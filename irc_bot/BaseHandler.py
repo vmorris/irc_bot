@@ -19,7 +19,7 @@ class BaseHandler(object):
             for channel in self.session.channels:
                 self.session.send(f'JOIN {channel}')
         elif command == 'PING':
-            self.session.send(f'PONG {args[0]}')
+            self.session.pong(args[0])
         elif command == 'PRIVMSG':
             self.handle_message(prefix, command, args)
         elif command == 'NOTICE':

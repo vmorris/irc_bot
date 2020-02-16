@@ -27,7 +27,7 @@ class HelloHandler(BaseHandler):
             self._handle_channel_message(channel, message)
 
     def _handle_private_message(self, sender, message):
-        self.session.send(f'PRIVMSG {sender} :hi {sender}!')
+        self.session.send_message(sender, 'hi {sender}!')
     
     def _handle_channel_message(self, channel, message):
         if message.startswith(f'@{self.session.nick} help'):
@@ -35,13 +35,13 @@ class HelloHandler(BaseHandler):
         if message.startswith(f'@{self.session.nick} echo'):
             to_echo = message.split('echo ', 1)[1]
             if len(to_echo) == 0:
-                self.session.send(f'PRIVMSG {channel} :What do you want me to echo?')
+                self.session.send_message(channel, 'What do you want me to echo?')
             else:
-                self.session.send(f'PRIVMSG {channel} :{to_echo}')
+                self.session.send_message(channel, to_echo)
             
     def _send_help(self, channel):
-        self.session.send(f'PRIVMSG {channel} :hello there, i am a dumb bot!')
-        self.session.send(f'PRIVMSG {channel} :prefix commands with @{self.session.nick}')
-        self.session.send(f'PRIVMSG {channel} :commands:')
-        self.session.send(f'PRIVMSG {channel} :  help')
-        self.session.send(f'PRIVMSG {channel} :  echo')
+        self.session.send_message(channel, 'Hello there, I am a dumb bot!')
+        self.session.send_message(channel, f'Prefix commands with @{self.session.nick}')
+        self.session.send_message(channel, 'commands:')
+        self.session.send_message(channel, ' help')
+        self.session.send_message(channel, ' echo')

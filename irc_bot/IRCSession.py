@@ -51,12 +51,13 @@ class IRCSession():
     def send(self, msg):
         to_send = f'{msg}\r\n'.encode()
         self.sock.sendall(to_send)
+        
+    def send_message(self, to, message):
+        msg = f'PRIVMSG {to} :{message}'
+        self.send(msg)
 
-    def get_nick(self):
-        return self.nick
-
-    def get_ident(self):
-        return self.ident
+    def pong(self, pinged):
+        self.send(f'PONG {pinged}')
 
     def _login(self):
         self.send(f'NICK {self.nick}')
