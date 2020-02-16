@@ -1,5 +1,3 @@
-
-
 from irc_bot.IRCSession import IRCSession
 from irc_bot.HelloHandler import HelloHandler
 import logging
@@ -10,6 +8,7 @@ import time
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
+
 
 rando = randint(100, 999)
 host = 'irc.dal.net'
